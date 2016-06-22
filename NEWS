@@ -1,0 +1,311 @@
+Major changes in 0.6.5
+======================
+
+ * Documentation improvements
+ * builder: Check that the specified command exists after build is done
+ * builder: Fix up mtime in headers for python precompiled files
+ * builder: Allow submodules and including modules from other json files
+ * system-helper builds are optional (--disable-system-helper)
+ * system-helper: Support installing from local remotes and bundles
+ * Improved support for --subpath installs, including libflatpak support
+ * Improved command line completion
+
+Major changes in 0.6.4
+======================
+
+ * Fix an issue where flatpak sometimes created empty "repo"
+   directories in the CWD
+
+Major changes in 0.6.3
+======================
+
+ * Fix resolv.conf regression in `flatpak build`
+ * Fix LD_LIBRARY_PATH override support in `flatpak build`
+ * Support forwarding app permissions in `flatpak-builder --run`
+ * Flatpak is now smarter about the default branch to use in most operations
+ * update will not fail on the first error if updating several things
+ * New much more complete bash completion system
+ * Faster installations
+ * Support new keyfile format for remote-add --from=file
+
+Major changes in 0.6.2
+======================
+
+ * Fixed no-network support regression in setuid mode.
+ * Fixed creation of root-owned file in home dir when using sudo in some cases
+ * New --with-privileged-group configure option
+
+Major changes in 0.6.1
+======================
+
+ * Fixed support for systems without user namespaces (default for Arch) or
+   unprivileged support for user namespaces (default for Debian).
+ * Fix memory leak during install/update.
+ * update: Fix support for --arch.
+ * Set the right location for the system directory in the environment.
+ * system-helper: Support updating without deploying (needed for
+   gnome-software support).
+ * lib: Fix support for updates
+
+Major changes in 0.6.0
+======================
+
+Renamed from xdg-app to Flatpak.  Existing repositories should keep
+working, and locally user installed apps/runtime will be migrated
+automatically. However, there are some things that you have to be
+aware of:
+ * The command names are now flatpak/flatpak-builder
+ * System-wide installed apps/runtimes need to be reinstalled
+ * flatpak-builder uses a ".flatpak-builder" subdirectory instead
+   of ".xdg-app-builder".
+ * The bus name and interface name for the permission
+   store is changed, it was in org.freedesktop.XdgApp, but is
+   now in org.freedesktop.impl.portal.DesktopPortal.
+ * The installation migration is a one-time operation so you can't
+   go back to xdg-app after updating.
+ * The library API (and name) changed due to the rename.
+
+Other changes:
+ * Flatpak now hard-requires ostree 2016.5
+ * Switch from using xdg-app-helper to an included version of bubblewrap:
+   https://github.com/projectatomic/bubblewrap
+ * Added a policykit-based system helper that allows you to authenticate
+   via polkit to install into the system repository.
+ * Added an experimental command to export/import applications and runtimes
+   as an OCI tarball.
+ * builder: Fix creation of locale extensions if there was no locale data in the
+   build.
+ * Its now possible to disable/enable configured remotes.
+ * A lot of new tests where added, and we now support installed tests.
+ * builder now has an optional --arch argument for multiarch building.
+ * Builder modules can be disabled with "disabled": true.
+ * Using --filesystem=/tmp now hides the system X11 sockets.
+
+
+Major changes in 0.5.2
+======================
+
+* The way locale extensions work has changed. Now we build a single extension
+  for all locales, but we allow you to specify a subset of it during installation
+  and update time using the --subpath commandline flag.
+  The main reason for this is that the many extensions didn't scale, both in
+  technical terms (large ostree summary file size), but also in terms of the
+  UI listing hundreds of uninteresting things.
+* We no longer use sizes in the commit objects to get installed and download size,
+  instead we store some extra metadata in the summary file. This allows us
+  to get much faster access to these, as with recent ostree versions we can
+  cache the summary file.
+* New command xdg-app build-sign that lets you sign a commit at any time.
+* New argument xdg-app build --force-clean that removes pre-existing build dirs.
+* xdg-app run now uses the "current" version as the default if you specify no
+  branch or arch. It used to default to the "master" branch. This will default
+  to the last installed version, but can be changed with xdg-app make-current.
+* Added config-opts to the build-options in xdg-app-builder. This allows you
+  to extend the configure flags in an arch dependent way.
+* Documentation updates
+
+Major changes in 0.5.1
+=======================
+* Make xdg-app-builder --build-only not export the results
+* Create all-in-one Locale extension that combines all the locale extensions
+* Extract icons for all appdata nodes when creating appstream
+* Documentation updates
+* Better handling of metadata in xdg-app-builder cache
+* Respect the specified branch when exporting in xdg-app-builder
+* Fix support for multi-arch with i386 userspace and 64bit kernel
+* Avoid deprecated 32bit capabilities syscalls
+
+Major changes in 0.5.0
+=======================
+* Some libxdg-app API additions for handling bundles
+* Default to /bin/sh as user shell in sandbox
+* Fix detection of which apps are in use during uninstall
+* New implementation of fuse filesystem for document portal.
+  It is now cleaner and works on 32bit.
+* Honor the noenumerate flag on remotes in CLI and libxdg-app.
+* Add change notification for permissions store
+* Require signed summaries for gpg-signed remotes
+* Fix summary signatures of deltas in xdg-app build-update.
+
+Major changes in 0.4.13
+=======================
+* Fix misgeneration of appdata xml in some cases
+* Various improvements to bundles, and support in libxdgapp
+* Add sources to Debug extensions created by xdg-app-builder
+* Allow specifying subdirs of xdg-* dirs, for instance:
+   --filesystem=xdg-download/some-dir
+* Add support for --filesystem=xdg-run/subdir which means
+  XDG_RUNTIME_DIR dir, rather than xdg-user-dirs.
+* Add --generate-static-deltas option to build-update-repo.
+
+Major changes in 0.4.12
+=======================
+* Fix crashes.
+* Update exports when removing apps.
+* Remove appstream and repo refs when removing a remote.
+* Add some build options to make libxdg-app usable inside a sandbox.
+* xdg-app-builder builds are now in the .xdg-app-builder/build subdir.
+* Make system repo bare-user to avoid creating any setuid binaries.
+* Add xdg-app-builder --run operation that runs a command with the
+  build environment set up.
+* Support creating locale extensions with xdg-app-builder.
+* Add support for tags to metadata.
+* Put runtime info and tags in the appstream data
+
+Major changes in 0.4.11
+=======================
+* Fix assertion when installing runtime
+
+Major changes in 0.4.10
+=======================
+* App desktop files and icons were not being exported to the desktop
+
+Major changes in 0.4.9
+======================
+* Fix crash at end of runtime install.
+* xdg-app-builder has a new source type "shell" which lets you run arbitrary
+  shell commands.
+* Allow apps with writable homedir access to modify the xdg-app repos.
+* New xdg-app info command gives you status of an installed app or runtime.
+* The xdg-app-builder cache now contains the sdk commit id, so that a new
+  version of the sdk invalidates the cache.
+* Fixed a regression in the xdg-app install-app backwards compatibility
+  handling.
+* xdg-app now gives the application access to the deployment path, which can
+  be used to give host-side services access to app files (such as help
+  documents).
+* build-export no longer exports appstream files, and when generating appstream
+  files we don't need them to be.
+* The default architecture tag used by xdg-app is now made canonical when needed
+  (i.e. on arm/x86/mips).
+
+Major changes in 0.4.8
+======================
+* Changed global installation directory to /var/lib/xdg-app (not /var/xdg-app).
+* Add support for a dbus filtering on the system bus.
+* Choosing user namespaces or setuid is now a runtime option, not build time.
+* Fix xml-escaping in the appstream generation.
+* Various build fixes.
+* Added some more documentation for the library.
+* Disable support for running apps on systems without a systemd user session.
+* Fix uninitialized memory read in xdg-app-builder during git checkouts.
+* Correctly handle disabled git submodules in xdg-app-builder
+* Fix hiding of non-exported symbols in libxdgapp
+
+Major changes in 0.4.7
+======================
+* Enabled build of libxdg-app by default, now the API is stable
+  enough for e.g. gnome-software to use it.
+* Restructured the command line interface to xdg-app, it is now
+  more streamlined and easy to use. For instance, to install
+  both apps or runtimes, now use "xdg-app install $name".
+  The old commands still work, but are deprecated and not
+  in the docs.
+* xdg-app-builder has gotten a bunch of new features that
+  makes it easier to build apps, and some initial work to
+  make it possible to create runtimes using it
+* build-export now finds and export any app-info installed by
+  the app, and build-update-repo collects all such exports
+  into a per-repo branch for appstream and icons.
+* The client (and libs) support for locally mirroring the appstream
+  branch for each remote. This allows use to create graphical appstores
+  with user-readable information and icons.
+* On the client side one can now specify priorities for each
+  remote.
+
+Major changes in 0.4.6
+======================
+* Added an initial version of libxdg-app, a highlevel library
+  intended to be used by user interface frontends to xdg-app.
+  It is not yet API stable, so it is disabled by default.
+  Enable with --enable-libxdgapp
+* Added xdg-app-builder, a separate tool that makes it easier to build
+  applications with external dependencies.
+* Add support for single-file bundles, which can be a useful way
+  to distribute apps on e.g. a usb stick. Only works with the
+  latest version of ostree.
+* Always allow apps to talk to the built-in portals
+* Support granting read-only access to the filesystem with e.g. --filesystem=host:ro
+* Add /run/user/$uid/xdg-app-info file that contains the current permissions of the app
+* Add --writable-sdk option to xdg-app build-init
+* Add file locking to better handle concurrent xdg-app operations like update and install
+* Various fixes
+
+Major changes in 0.4.5
+======================
+* Support signing commits in build-export
+* Correctly handle symlinks in host root when app has host-fs access
+* Always regenerate summary after build-export
+* Make uninstall a bit more robust
+* Install the dbus introspection files
+* Add human readable size to build-export report
+* Add /dev/ptmx symlink in app
+* Fix apps not getting SIGCHILD
+* Only expose minimal /etc/[passwd|group] in app
+
+Major changes in 0.4.4
+======================
+* Fix race condition in fuse fs
+* Don't save uid/gid/xattrs in build-export
+* run: Handle existing mounts with spaces in them
+* propagate xauth cookies to sandbox
+
+Major changes in 0.4.3
+======================
+* Build with older ostree
+* Add --nofilesystem flag to e.g. xdg-app run
+* Add xdg-app dump-runtime command
+
+Major changes in 0.4.2.1
+======================
+* Fix dbus proxy
+
+Major changes in 0.4.2
+======================
+* Fix build with older versions of glib
+* Fix regression in filesystem access configuration
+* Make seccomp use optional (for arches without it)
+* Add xdg-app enter command to enter a running sandbox
+* Fix /var/cache being readonly
+* Add /var/data and /var/config shortcuts for per-app data
+* Minor fixes to bash completion
+
+Major changes in 0.4.1
+======================
+* Fixed a parallel build issue
+* Fixed a build issue where openat() didn't get a mode passed
+* Don't block ptrace and perf in debug and build runs
+* Put nvidia drivers in sandbox if DRI allowed
+* Support specifying a version for runtime extensions
+
+Major changes in 0.4.0
+======================
+* A new permissions store was added to the dbus api.
+  This can be used by portal implementations that want to store
+  per-app permissions for objects.
+* The document portal was added. This is a dbus api
+  which you can use to create document ids and assign
+  apps permissions to see these documents. The documents
+  themselves are accessed via a custom fuse filesystem.
+* perf and strace are now blocked via the seccomp filters
+* You can now override application metadata on a system
+  and per-user level, giving apps more or less access
+  than what they request.
+* New command modify-remote added which lets you change
+  configuration of a remote after it has been added with
+  add-remote.
+* Support for adding trusted gpg keys on a per-remote basis
+  has been added to add-remote and modify-remote.
+* The repo-contents command has been renamed to ls-remote
+  to better match the other commands.
+* The list-remotes command can now show more information
+  about the remotes.
+* The bash completion implementation has been improved.
+
+Major changes in 0.3.6
+======================
+
+* Fix a typo in the socket seccomp rules that made ipv6 not work
+* Export the users fonts (~/.local/share/fonts or ~/.fonts) in the sandbox
+* Fix seccomp rules to work on i386
+* Make exposing xdg user dirs work right
