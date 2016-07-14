@@ -9,6 +9,7 @@ libflatpak.so.0:flatpak_bundle_ref_new
 libflatpak.so.0:flatpak_error_get_type
 libflatpak.so.0:flatpak_error_quark
 libflatpak.so.0:flatpak_get_default_arch
+libflatpak.so.0:flatpak_get_supported_arches
 libflatpak.so.0:flatpak_install_flags_get_type
 libflatpak.so.0:flatpak_installation_create_monitor
 libflatpak.so.0:flatpak_installation_drop_caches
@@ -28,7 +29,9 @@ libflatpak.so.0:flatpak_installation_launch
 libflatpak.so.0:flatpak_installation_list_installed_refs
 libflatpak.so.0:flatpak_installation_list_installed_refs_by_kind
 libflatpak.so.0:flatpak_installation_list_installed_refs_for_update
+libflatpak.so.0:flatpak_installation_list_installed_related_refs_sync
 libflatpak.so.0:flatpak_installation_list_remote_refs_sync
+libflatpak.so.0:flatpak_installation_list_remote_related_refs_sync
 libflatpak.so.0:flatpak_installation_list_remotes
 libflatpak.so.0:flatpak_installation_load_app_overrides
 libflatpak.so.0:flatpak_installation_modify_remote
@@ -58,6 +61,10 @@ libflatpak.so.0:flatpak_ref_get_name
 libflatpak.so.0:flatpak_ref_get_type
 libflatpak.so.0:flatpak_ref_kind_get_type
 libflatpak.so.0:flatpak_ref_parse
+libflatpak.so.0:flatpak_related_ref_get_subpaths
+libflatpak.so.0:flatpak_related_ref_get_type
+libflatpak.so.0:flatpak_related_ref_should_delete
+libflatpak.so.0:flatpak_related_ref_should_download
 libflatpak.so.0:flatpak_remote_get_appstream_dir
 libflatpak.so.0:flatpak_remote_get_appstream_timestamp
 libflatpak.so.0:flatpak_remote_get_disabled
