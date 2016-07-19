@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.6.7
-Release  : 3
+Release  : 4
 URL      : https://github.com/flatpak/flatpak/releases/download/0.6.7/flatpak-0.6.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.6.7/flatpak-0.6.7.tar.xz
 Summary  : Application sandboxing framework

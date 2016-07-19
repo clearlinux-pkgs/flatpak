@@ -1,7 +1,3 @@
 # This file contains pkgconfig build requirements that get picked up
 # but are undesirable. One entry per line, no whitespace.
-AC_CHECK_FUNCS(archive_read_support_filter_all)
-save_LIBS
-LIBS
-\
 polkit-gobject-1
