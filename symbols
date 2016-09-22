@@ -25,6 +25,7 @@ libflatpak.so.0:flatpak_installation_get_type
 libflatpak.so.0:flatpak_installation_install
 libflatpak.so.0:flatpak_installation_install_bundle
 libflatpak.so.0:flatpak_installation_install_full
+libflatpak.so.0:flatpak_installation_install_ref_file
 libflatpak.so.0:flatpak_installation_launch
 libflatpak.so.0:flatpak_installation_list_installed_refs
 libflatpak.so.0:flatpak_installation_list_installed_refs_by_kind
