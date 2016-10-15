@@ -68,6 +68,7 @@ libflatpak.so.0:flatpak_related_ref_should_delete
 libflatpak.so.0:flatpak_related_ref_should_download
 libflatpak.so.0:flatpak_remote_get_appstream_dir
 libflatpak.so.0:flatpak_remote_get_appstream_timestamp
+libflatpak.so.0:flatpak_remote_get_default_branch
 libflatpak.so.0:flatpak_remote_get_disabled
 libflatpak.so.0:flatpak_remote_get_gpg_verify
 libflatpak.so.0:flatpak_remote_get_name
@@ -79,6 +80,7 @@ libflatpak.so.0:flatpak_remote_get_url
 libflatpak.so.0:flatpak_remote_new
 libflatpak.so.0:flatpak_remote_ref_get_remote_name
 libflatpak.so.0:flatpak_remote_ref_get_type
+libflatpak.so.0:flatpak_remote_set_default_branch
 libflatpak.so.0:flatpak_remote_set_disabled
 libflatpak.so.0:flatpak_remote_set_gpg_key
 libflatpak.so.0:flatpak_remote_set_gpg_verify
