@@ -44,6 +44,7 @@ libflatpak.so.0:flatpak_installation_uninstall
 libflatpak.so.0:flatpak_installation_update
 libflatpak.so.0:flatpak_installation_update_appstream_sync
 libflatpak.so.0:flatpak_installation_update_full
+libflatpak.so.0:flatpak_installation_update_remote_sync
 libflatpak.so.0:flatpak_installed_ref_get_deploy_dir
 libflatpak.so.0:flatpak_installed_ref_get_installed_size
 libflatpak.so.0:flatpak_installed_ref_get_is_current
@@ -72,6 +73,7 @@ libflatpak.so.0:flatpak_remote_get_default_branch
 libflatpak.so.0:flatpak_remote_get_disabled
 libflatpak.so.0:flatpak_remote_get_gpg_verify
 libflatpak.so.0:flatpak_remote_get_name
+libflatpak.so.0:flatpak_remote_get_nodeps
 libflatpak.so.0:flatpak_remote_get_noenumerate
 libflatpak.so.0:flatpak_remote_get_prio
 libflatpak.so.0:flatpak_remote_get_title
@@ -84,6 +86,7 @@ libflatpak.so.0:flatpak_remote_set_default_branch
 libflatpak.so.0:flatpak_remote_set_disabled
 libflatpak.so.0:flatpak_remote_set_gpg_key
 libflatpak.so.0:flatpak_remote_set_gpg_verify
+libflatpak.so.0:flatpak_remote_set_nodeps
 libflatpak.so.0:flatpak_remote_set_noenumerate
 libflatpak.so.0:flatpak_remote_set_prio
 libflatpak.so.0:flatpak_remote_set_title
