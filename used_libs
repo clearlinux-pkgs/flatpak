@@ -1,4 +1,5 @@
 libXau.so.6
+libarchive.so.13
 libc.so.6
 libelf.so.1
 libfuse.so.2

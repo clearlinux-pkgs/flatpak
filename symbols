@@ -4,12 +4,14 @@ libflatpak.so.0:flatpak_bundle_ref_get_icon
 libflatpak.so.0:flatpak_bundle_ref_get_installed_size
 libflatpak.so.0:flatpak_bundle_ref_get_metadata
 libflatpak.so.0:flatpak_bundle_ref_get_origin
+libflatpak.so.0:flatpak_bundle_ref_get_runtime_repo_url
 libflatpak.so.0:flatpak_bundle_ref_get_type
 libflatpak.so.0:flatpak_bundle_ref_new
 libflatpak.so.0:flatpak_error_get_type
 libflatpak.so.0:flatpak_error_quark
 libflatpak.so.0:flatpak_get_default_arch
 libflatpak.so.0:flatpak_get_supported_arches
+libflatpak.so.0:flatpak_get_system_installations
 libflatpak.so.0:flatpak_install_flags_get_type
 libflatpak.so.0:flatpak_installation_create_monitor
 libflatpak.so.0:flatpak_installation_drop_caches
@@ -17,10 +19,14 @@ libflatpak.so.0:flatpak_installation_fetch_remote_metadata_sync
 libflatpak.so.0:flatpak_installation_fetch_remote_ref_sync
 libflatpak.so.0:flatpak_installation_fetch_remote_size_sync
 libflatpak.so.0:flatpak_installation_get_current_installed_app
+libflatpak.so.0:flatpak_installation_get_display_name
+libflatpak.so.0:flatpak_installation_get_id
 libflatpak.so.0:flatpak_installation_get_installed_ref
 libflatpak.so.0:flatpak_installation_get_is_user
 libflatpak.so.0:flatpak_installation_get_path
+libflatpak.so.0:flatpak_installation_get_priority
 libflatpak.so.0:flatpak_installation_get_remote_by_name
+libflatpak.so.0:flatpak_installation_get_storage_type
 libflatpak.so.0:flatpak_installation_get_type
 libflatpak.so.0:flatpak_installation_install
 libflatpak.so.0:flatpak_installation_install_bundle
@@ -38,6 +44,7 @@ libflatpak.so.0:flatpak_installation_load_app_overrides
 libflatpak.so.0:flatpak_installation_modify_remote
 libflatpak.so.0:flatpak_installation_new_for_path
 libflatpak.so.0:flatpak_installation_new_system
+libflatpak.so.0:flatpak_installation_new_system_with_id
 libflatpak.so.0:flatpak_installation_new_user
 libflatpak.so.0:flatpak_installation_remove_remote
 libflatpak.so.0:flatpak_installation_uninstall
@@ -91,4 +98,5 @@ libflatpak.so.0:flatpak_remote_set_noenumerate
 libflatpak.so.0:flatpak_remote_set_prio
 libflatpak.so.0:flatpak_remote_set_title
 libflatpak.so.0:flatpak_remote_set_url
+libflatpak.so.0:flatpak_storage_type_get_type
 libflatpak.so.0:flatpak_update_flags_get_type
