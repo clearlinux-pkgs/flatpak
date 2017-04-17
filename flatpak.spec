@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.8.0
-Release  : 9
+Release  : 10
 URL      : https://github.com/flatpak/flatpak/releases/download/0.8.0/flatpak-0.8.0.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.8.0/flatpak-0.8.0.tar.xz
 Summary  : Application sandboxing framework
