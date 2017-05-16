@@ -1,3 +1,139 @@
+Major changes in 0.8.5
+======================
+
+This is a security update for the stable branch, and all users are
+recommended to update.
+
+ * Fixed a use-after-free and some leaks in the dbus-proxy. This
+   is not currently believed to be exploitable, but the proxy is a
+   security boundary, so we still  recommend to update.
+ * Regular updates now never allow updates to an older version
+   than what is currently installed (unless you explicitly specify
+   an old commit id). This closes a hole where a MITM attacker can
+   force clients to downgrade to an earlier (gpg-signed) version of
+   the application.
+ * The automatic detection of --from in flatpak install now detects
+   flatpakref extensions even in URIs that end in a query string such as
+   https://git.gnome.org/browse/gnome-apps-nightly/plain/gedit.flatpakref?h=stable
+ * The detection of "unmaintained" system extensions was broken, and
+   in some cases these extensions were not found. This now always
+   works.
+ * Flatpak now builds with latest OSTree. This required some fixing for
+   multiple definitions of the g_auto* macros as OSTree now exports
+   those.
+ * We no longer rely on ostree trivial-httpd for the tests, because
+   this is optional in later versions of ostree. Instead we use
+   they python SimpleHTTPServer.
+ * The minimum glib version has been corrected to 2.44.
+ * The minumum automake version has been increased to 1.13.4
+   because some older version didn't work.
+
+Major changes in 0.8.4
+======================
+
+In addition to the regular list of bugfixes this stable release
+include backports of one more feature required for making OpenGL work
+well. Now extra-data using extensions (such as the nvidia driver) can
+specify that it doesn't need a runtime to run its apply script. We use
+this in the nvidia driver by making the script a static binary, which
+lets us use the nvidia driver for multiple runtimes without requering
+that a particular one is installed. We also support an extension point
+supporting multiple versions, which will be use for sharing the
+nvidia driver between different runtime versions.
+
+Additional fixes:
+ * Documentation fixes
+ * Crash fixes
+ * Fix xauth propagation in some cases
+ * Don't remove origin remotes on uninstall if some other app
+   is installed from it.
+ * Don't reset what locales are installed when updating a locale
+   extension
+ * Disable splice for the documentation portal as it seems
+   to be broken in fuse
+ * Append, don't override XDG_DATA_DIRS in profile script
+ * Fix progress reporting in libflatpak to go from 0 to
+   100% once, merging the various phases.
+
+Major changes in 0.8.3
+======================
+
+In addition to the regular list of bugfixes this stable release
+include backports of a the updated OpenGL support from master.  This,
+in combination with the work in the runtime allows flatpak to work out
+of the box with out-of-tree OpenGL drivers, including the nvidia
+driver.
+
+Additionally, due to some complicated issues wrt ptrace and user
+namespaces this version disables the use of user namespaces if
+bubblewrap is setuid, as it cause problems for the way flatpak
+portals identifies applications. (See issue #557 for details)
+
+ * Better handling of errors for extra-data
+ * Handle extra-data properly for runtimes (as well as apps)
+ * Respect required version for runtimes (as well as apps)
+ * flatpak list: Don't break if some local ref is not deployed
+ * builder: Look for appstream data in /app/share/metadata also
+ * builder: Fix buildsystem=cmake builds
+ * Add progress reporting to extra-data download
+ * Fix uid/gid for directories in document portal
+
+Major changes in 0.8.2
+======================
+
+This is a bugfix and security update.
+
+Some of the bind-mounts that flatpak sets up were not read-only as
+they should have. This includes: extensions, system fonts,
+resolv.conf, localtime and machine-id. Many of thse are typically only
+writable by root, but some, like the user-specific fonts and
+user-installed extensions could be modified from the sandbox.
+
+Everyone using 0.8.x is recommended to update to this version.
+
+Other fixes:
+
+ * There are new configure options for where to install dbus configuration
+ * Broken symlinks in the root directory no longer break flatpak run
+ * flatpak run with HOME in /var now works
+ * dri access now also handles mali devices
+ * install handles --arch when installing flatpakrefs
+ * system-helper activation fixed on systemd-less setups
+ * dbus-proxy now works without /run
+ * During installation, failing to update a dependency is now not
+   fatal.
+ * /etc is now fully writable when building runtimes
+ * --filesystem=xdg-config/foo now sets up the bind-mount from the host dir
+   even when not using :create.
+
+Major changes in 0.8.1
+======================
+
+This is a bugfix and security update (CVE-2017-5226).
+
+Flatpak now uses seccomp to disallow the TIOCSTI ioctl in the sandbox,
+which works around the possibility to inject text on the controlling
+tty (CVE-2017-5226).
+
+This was previously fixed in bubblewrap in 0.1.6, but that change has
+now been reverted as it introduced other problems for flatpak.
+
+ * Update bundled bubblewrap to 0.1.7
+ * Fix writing new file with O_EXCL in the document portal.
+ * Allow appstream data that doesn't have .desktop in the component id,
+   such as data for runtimes.
+ * Drop json-glib dependency from 1.2 to 1.0
+ * Builder: Fail if unable to read included file
+ * OCI: Ensure exported layers are readable by everyone
+ * Fix extra-data download in gnome-software
+ * Fix update-mime-database trigger when installing via
+   the system helper.
+ * Updating an app by installing a newer bundle now works
+   again.
+ * Make /var/tmp not be on a tmpfs (it is now in
+   ~/.var/app/$appid/cache/tmp).
+ * Documentation / translation updates
+
 Major changes in 0.8.0
 ======================
 
