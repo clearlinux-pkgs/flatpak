@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.8.7
-Release  : 14
+Release  : 15
 URL      : https://github.com/flatpak/flatpak/releases/download/0.8.7/flatpak-0.8.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.8.7/flatpak-0.8.7.tar.xz
 Summary  : Application sandboxing framework
@@ -15,6 +15,7 @@ Requires: flatpak-config
 Requires: flatpak-lib
 Requires: flatpak-data
 Requires: flatpak-locales
+Requires: gnupg
 BuildRequires : docbook-xml
 BuildRequires : gettext
 BuildRequires : gobject-introspection-dev
@@ -25,8 +26,11 @@ BuildRequires : libcap-dev
 BuildRequires : libxslt-bin
 BuildRequires : perl(XML::Parser)
 BuildRequires : pkgconfig(fuse)
+BuildRequires : pkgconfig(gio-2.0)
+BuildRequires : pkgconfig(gio-unix-2.0)
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(json-glib-1.0)
+BuildRequires : pkgconfig(libarchive)
 BuildRequires : pkgconfig(libelf)
 BuildRequires : pkgconfig(libgsystem)
 BuildRequires : pkgconfig(libseccomp)
@@ -106,7 +110,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1497972680
+export SOURCE_DATE_EPOCH=1501787585
 %configure --disable-static --disable-system-helper --disable-documentation --enable-introspection=no
 make V=1  %{?_smp_mflags}
 
@@ -118,7 +122,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1497972680
+export SOURCE_DATE_EPOCH=1501787585
 rm -rf %{buildroot}
 %make_install
 %find_lang flatpak
