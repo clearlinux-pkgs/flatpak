@@ -3,3 +3,7 @@
 valgrind
 libcap-dev
 libarchive-dev
+gpgme
+gpgme-dev
+libassuan-dev
+libgpg-error-dev
