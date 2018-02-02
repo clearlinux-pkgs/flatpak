@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.10.3
-Release  : 19
+Release  : 20
 URL      : https://github.com/flatpak/flatpak/releases/download/0.10.3/flatpak-0.10.3.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.10.3/flatpak-0.10.3.tar.xz
 Summary  : Application sandboxing framework
