@@ -1,4 +1,3 @@
 Configure miss: if gcc supports flag -Werror=parenthesis in envvar CFLAGS
 Configure miss: whether renameat2 is declared
-Configure miss: whether memfd_create is declared
 Configure miss: DEP_GPGME
