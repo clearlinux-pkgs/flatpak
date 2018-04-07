@@ -7,3 +7,5 @@ gpgme
 gpgme-dev
 libassuan-dev
 libgpg-error-dev
+dbus
+dbus-dev
