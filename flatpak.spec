@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.11.3
-Release  : 23
+Release  : 24
 URL      : https://github.com/flatpak/flatpak/releases/download/0.11.3/flatpak-0.11.3.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.11.3/flatpak-0.11.3.tar.xz
 Summary  : Application sandboxing framework
@@ -16,6 +16,7 @@ Requires: flatpak-lib
 Requires: flatpak-data
 Requires: flatpak-locales
 Requires: gnupg
+Requires: xdg-desktop-portal
 BuildRequires : dbus
 BuildRequires : dbus-dev
 BuildRequires : docbook-xml
@@ -43,8 +44,10 @@ BuildRequires : pkgconfig(libsoup-2.4)
 BuildRequires : pkgconfig(libxml-2.0)
 BuildRequires : pkgconfig(ostree-1)
 BuildRequires : pkgconfig(xau)
+BuildRequires : pkgconfig(xdg-desktop-portal)
 BuildRequires : sed
 BuildRequires : valgrind
+BuildRequires : xdg-desktop-portal
 BuildRequires : xmlto
 
 %description
@@ -115,7 +118,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1523133884
+export SOURCE_DATE_EPOCH=1523134536
 %configure --disable-static --disable-system-helper --disable-documentation --enable-introspection=no
 make  %{?_smp_mflags}
 
@@ -127,7 +130,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1523133884
+export SOURCE_DATE_EPOCH=1523134536
 rm -rf %{buildroot}
 %make_install
 %find_lang flatpak

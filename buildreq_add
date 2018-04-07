@@ -9,3 +9,4 @@ libassuan-dev
 libgpg-error-dev
 dbus
 dbus-dev
+xdg-desktop-portal
