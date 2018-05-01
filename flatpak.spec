@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.11.3
-Release  : 25
+Release  : 26
 URL      : https://github.com/flatpak/flatpak/releases/download/0.11.3/flatpak-0.11.3.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.11.3/flatpak-0.11.3.tar.xz
 Summary  : Application sandboxing framework
@@ -119,8 +119,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525199447
-%configure --disable-static --disable-system-helper --disable-documentation --enable-introspection=no
+export SOURCE_DATE_EPOCH=1525199677
+%configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
 %check
@@ -131,7 +131,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1525199447
+export SOURCE_DATE_EPOCH=1525199677
 rm -rf %{buildroot}
 %make_install
 %find_lang flatpak
@@ -146,21 +146,28 @@ rm -rf %{buildroot}
 /usr/libexec/flatpak-bwrap
 /usr/libexec/flatpak-dbus-proxy
 /usr/libexec/flatpak-session-helper
+/usr/libexec/flatpak-system-helper
 
 %files config
 %defattr(-,root,root,-)
+/usr/lib/systemd/system/flatpak-system-helper.service
 /usr/lib/systemd/user/dbus.service.d/flatpak.conf
 /usr/lib/systemd/user/flatpak-session-helper.service
 
 %files data
 %defattr(-,root,root,-)
+/usr/lib64/girepository-1.0/Flatpak-1.0.typelib
 /usr/share/bash-completion/completions/flatpak
 /usr/share/dbus-1/interfaces/org.freedesktop.Flatpak.xml
 /usr/share/dbus-1/services/org.freedesktop.Flatpak.service
+/usr/share/dbus-1/system-services/org.freedesktop.Flatpak.SystemHelper.service
 /usr/share/flatpak/triggers/desktop-database.trigger
 /usr/share/flatpak/triggers/gtk-icon-cache.trigger
 /usr/share/flatpak/triggers/mime-database.trigger
 /usr/share/gdm/env.d/flatpak.env
+/usr/share/gir-1.0/*.gir
+/usr/share/polkit-1/actions/org.freedesktop.Flatpak.policy
+/usr/share/polkit-1/rules.d/org.freedesktop.Flatpak.rules
 
 %files dev
 %defattr(-,root,root,-)

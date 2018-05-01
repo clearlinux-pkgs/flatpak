@@ -9,6 +9,7 @@ libgobject-2.0.so.0
 libgpgme.so.11
 libjson-glib-1.0.so.0
 libostree-1.so.1
+libpolkit-gobject-1.so.0
 libpthread.so.0
 libseccomp.so.2
 libsoup-2.4.so.1
