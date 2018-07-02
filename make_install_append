@@ -1,0 +1,2 @@
+mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
+mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/

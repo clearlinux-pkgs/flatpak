@@ -1,3 +1,148 @@
+Major changes in 0.99.2
+=======================
+
+ * Fix race condition on instance id allocation
+ * Translation updates
+ * Build fixes for new glibc versions
+ * Build fixes for new libsoup versions
+ * Build fixes for old glib versions
+
+Major changes in 0.99.1
+=======================
+
+This is the first pre-release before flatpak 1.0. This is considered
+feature-complete and we expect no features or major changes before
+1.0, only bugfixes.
+
+Note: There were some (minor) API changes in the FlatpakTransaction
+APIs that were added in 0.11.8, so please don't use the old
+version. (Note: I know of no user of this API).
+
+Changes since last minor release:
+ * Ostree 2018.6 is required, and with this, the p2p code in
+   flatpak is made non-optional.
+ * flatpak install/update/ininstall now lists all the operations
+   that it will do and asks for confirmation before starting.
+ * In the above confirmation the permissions (new permissions
+   for updates) are shown for all applications.
+ * The FlatpakTranscation API has a new ::ready signal that
+   allows users to do similar confirmation prompts.
+ * P2P updates are more efficient
+ * system-wide installation uses less fsync calls so should
+   installation should be faster.
+ * New ssh agent permissions allows granting an app
+   ssh access.
+
+Major changes in 0.11.8.3
+=========================
+
+ * Fix a 25 second timeout on startup if using p11-kit < 0.23.10
+ * Minor change in dbus proxy default filter, now broadcasts are
+   not accepted from portals.
+
+Major changes in 0.11.8.2
+=========================
+
+ * Fix crash when building some apps
+ * Allow multiple appstream components per app
+ * Fix handling of gl drivers in uninstall --unused
+ * Don't prompt if nothing changed in uninstall --unused
+ * Longer timeouts in test suite
+ * Updated translations
+
+Major changes in 0.11.8.1
+=========================
+
+ * Fixed regression running apps with --own=* permissions
+
+Major changes in 0.11.8
+=======================
+
+ * Flatpak uninstall now accepts --all to remove everything and --unused to remove unused
+   runtimes.
+ * New command "flatpak repair" allows checking and repairing a flatpak installation.
+ * New permission --allow=bluetooth allows use of AF_BLUETOOTH sockets
+ * If p11-kit-server is installed on the host, this is now used to forward the host
+   certificate trust store to the sandboxed app.
+ * New transaction API in libflatpak that makes it much easier to implement
+  installation and updates in frontends.
+ * Flatpak uninstall now does not allow you to remove a runtime if some installed app requires it.
+ * We now have tab-completion for zsh.
+ * New installations of flatpak now defaults to bare-user-only repos, which means
+   that it works with filesystems that don't support xattrs.
+ * New flatpak info options: --show-location, --show-runtime, --show-sdk
+ * New flatpak remote-info options: --show-runtime, --show-sdk
+ * p2p operations now work when offline.
+ * Work around hanging on app startup on blocking autofs mounts.
+ * The dbus proxy filtering now works matches the new dbus containers filtering API.
+ * Various optimizations make installation and updates faster. In particular
+   operations like running triggers and pruning only happens once per
+   install/update operation.
+ * We now respect multiple extension versions matches when auto-downloading extensions.
+ * New http header Flatpak-Upgrade-From sent when upgrading.
+ * Commands like "flatpak info/list/remotes/seach" now work properly if /var/lib/flatpak doesn't exist.
+ * The bubblewrap version required for system-bwrap is now 0.2.1.
+
+Major changes in 0.11.7
+=======================
+
+ * Fix regression in installing .flatpak bundles
+
+Major changes in 0.11.6
+=======================
+
+ * Further work on the export filename regression, now also fixes the
+   same issue as in 0.11.5 but in flatpak build-finish.
+ * Fix segfault when installing from .flatpakref in gnome-software
+ * Build yacc parser from source.
+ * Don't tab-complete Sources/Locale/Debug extension by default.
+ * Fix tests on debian.
+
+Major changes in 0.11.5
+=======================
+
+ * Fix a regression which caused installation of epiphany and
+   other apps that export multiple .service files to fail.
+ * Fix appstream updates in p2p mode.
+ * Don't distribute generated gdbus code with tarball.
+ * Add documentation for the flatpak portal
+
+Major changes in 0.11.4
+=======================
+
+ * flatpak remove is now an alias for flatpak uninstall.
+ * flatpak uninstall now picks system or user automatically if not specified
+ * New appstream branch format which is more efficient to distribute,
+   the old is still generated for backwards compat.
+ * Appstream data now contains compatible arches (for applications
+   that doesn't exist for the primary arch). For example, an
+   i386-only app is now listed in the x86-64 appstream.
+ * The flatpak version is included in the user agent when downloading.
+ * The Flatpak-Ref http header is set to the currently installing ref when
+   downloading.
+ * New argument --timestamp in build-commit-from.
+ * When updating many apps we now only prune the local repo when all
+   updates are done, making multi-app updates faster.
+ * flatpak build now always allows multiarch use.
+ * flatpak build now mounts app extensions during build.
+ * flatpak build-init now supports --extension to add extension points earlier
+   than build-finish. Also build-finish now supports --remove-extension.
+ * New flatpak portal allows applications to sandbox themselves and restart a
+   newer version of themselves.
+ * New flatpak run options: --no-a11y-bus, --no-documents-portal.
+ * Initial support for end-of-life:ing applications.
+ * New option X-Flatpak-RunOptions in exported desktop/files allow you to specify
+   no-a11y-bus and no-documents-portal.
+ * Support for tagged extension points, which is useful if you want to use
+   the same extension id (but maybe different versions) multiple times in an app.
+ * We now export .service files for names that the app is allowed to own on
+   the session bus.
+ * libflatpak got new methods for listing remotes by type.
+ * libflatpak now has support in FlatpakRemoteRef for getting remote metadata
+   such as end-of-life, download size, metadata etc.
+ * There was some internal restructuring on how installs/updates are done
+   which should improve performance and maintainability.
+
 Major changes in 0.11.3
 =======================
 
