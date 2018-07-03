@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 0.99.2
-Release  : 28
+Release  : 29
 URL      : https://github.com/flatpak/flatpak/releases/download/0.99.2/flatpak-0.99.2.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.99.2/flatpak-0.99.2.tar.xz
 Summary  : Application sandboxing framework
@@ -52,6 +52,7 @@ BuildRequires : sed
 BuildRequires : valgrind
 BuildRequires : xdg-desktop-portal
 BuildRequires : xmlto
+Patch1: 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
 
 %description
 These are completely random keys, which include the secret key.
@@ -125,13 +126,14 @@ locales components for the flatpak package.
 
 %prep
 %setup -q -n flatpak-0.99.2
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530554272
+export SOURCE_DATE_EPOCH=1530660910
 %configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
@@ -143,7 +145,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1530554272
+export SOURCE_DATE_EPOCH=1530660910
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/flatpak
 cp COPYING %{buildroot}/usr/share/doc/flatpak/COPYING
