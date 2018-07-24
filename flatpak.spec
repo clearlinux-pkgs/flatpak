@@ -4,9 +4,10 @@
 #
 Name     : flatpak
 Version  : 0.99.2
-Release  : 29
+Release  : 30
 URL      : https://github.com/flatpak/flatpak/releases/download/0.99.2/flatpak-0.99.2.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/0.99.2/flatpak-0.99.2.tar.xz
+Source1  : flatpak.tmpfiles
 Summary  : Application sandboxing framework
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
@@ -23,6 +24,7 @@ BuildRequires : dbus
 BuildRequires : dbus-dev
 BuildRequires : docbook-xml
 BuildRequires : gettext
+BuildRequires : glibc-bin
 BuildRequires : gobject-introspection-dev
 BuildRequires : gpgme
 BuildRequires : gpgme-dev
@@ -133,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530660910
+export SOURCE_DATE_EPOCH=1532444210
 %configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
@@ -145,13 +147,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1530660910
+export SOURCE_DATE_EPOCH=1532444210
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/flatpak
 cp COPYING %{buildroot}/usr/share/doc/flatpak/COPYING
 cp libglnx/COPYING %{buildroot}/usr/share/doc/flatpak/libglnx_COPYING
 %make_install
 %find_lang flatpak
+mkdir -p %{buildroot}/usr/lib/tmpfiles.d
+install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/tmpfiles.d/flatpak.conf
 ## make_install_append content
 mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
@@ -177,6 +181,7 @@ mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/shar
 /usr/lib/systemd/user/dbus.service.d/flatpak.conf
 /usr/lib/systemd/user/flatpak-portal.service
 /usr/lib/systemd/user/flatpak-session-helper.service
+/usr/lib/tmpfiles.d/flatpak.conf
 
 %files data
 %defattr(-,root,root,-)

@@ -2,3 +2,4 @@
 bison
 gobject-introspection-dev
 xmlto
+glibc-bin
