@@ -1,5 +1,5 @@
-0.99.2
+1.0.0
 bison
+glibc-bin
 gobject-introspection-dev
 xmlto
-glibc-bin

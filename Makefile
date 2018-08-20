@@ -1,5 +1,5 @@
 PKG_NAME := flatpak
-URL = https://github.com/flatpak/flatpak/releases/download/0.99.2/flatpak-0.99.2.tar.xz
+URL = https://github.com/flatpak/flatpak/releases/download/1.0.0/flatpak-1.0.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
