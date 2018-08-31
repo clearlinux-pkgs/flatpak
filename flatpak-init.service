@@ -1,0 +1,10 @@
+[Unit]
+Description=Init system-wide flatpak repository
+ConditionPathExists=/var/lib/flatpak/repo/config
+
+[Service]
+Type=simple
+ExecStart=flatpak remote-list --system
+
+[Install]
+WantedBy=multi-user.target
