@@ -4,15 +4,17 @@
 #
 Name     : flatpak
 Version  : 1.0.1
-Release  : 32
+Release  : 33
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.1/flatpak-1.0.1.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.1/flatpak-1.0.1.tar.xz
-Source1  : flatpak.tmpfiles
+Source1  : flatpak-init.service
+Source2  : flatpak.tmpfiles
 Summary  : Application sandboxing framework
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: flatpak-bin
 Requires: flatpak-config
+Requires: flatpak-autostart
 Requires: flatpak-data
 Requires: flatpak-lib
 Requires: flatpak-license
@@ -60,6 +62,14 @@ Patch1: 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
 These are completely random keys, which include the secret key.
 Use these for testing gpg signing, do *NOT* ever use these for any
 real application.
+
+%package autostart
+Summary: autostart components for the flatpak package.
+Group: Default
+
+%description autostart
+autostart components for the flatpak package.
+
 
 %package bin
 Summary: bin components for the flatpak package.
@@ -135,7 +145,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535643939
+export SOURCE_DATE_EPOCH=1535749231
 %configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
@@ -147,22 +157,30 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1535643939
+export SOURCE_DATE_EPOCH=1535749231
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/flatpak
 cp COPYING %{buildroot}/usr/share/doc/flatpak/COPYING
 cp libglnx/COPYING %{buildroot}/usr/share/doc/flatpak/libglnx_COPYING
 %make_install
 %find_lang flatpak
+mkdir -p %{buildroot}/usr/lib/systemd/system
+install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/flatpak-init.service
 mkdir -p %{buildroot}/usr/lib/tmpfiles.d
-install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/tmpfiles.d/flatpak.conf
+install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/tmpfiles.d/flatpak.conf
 ## install_append content
 mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
+mkdir -p %{buildroot}/usr/lib/systemd/system/multi-user.target.wants
+ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
 ## install_append end
 
 %files
 %defattr(-,root,root,-)
+
+%files autostart
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
 
 %files bin
 %defattr(-,root,root,-)
@@ -177,6 +195,8 @@ mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/shar
 
 %files config
 %defattr(-,root,root,-)
+%exclude /usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+/usr/lib/systemd/system/flatpak-init.service
 /usr/lib/systemd/system/flatpak-system-helper.service
 /usr/lib/systemd/user/dbus.service.d/flatpak.conf
 /usr/lib/systemd/user/flatpak-portal.service
