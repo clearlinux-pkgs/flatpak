@@ -4,3 +4,7 @@ mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/shar
 mkdir -p %{buildroot}/usr/lib/systemd/system/multi-user.target.wants
 ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
 
+cp flatpak-cleanup.service %{buildroot}/usr/lib/systemd/system/flatpak-cleanup.service
+mkdir -p %{buildroot}/usr/libexec
+cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
+

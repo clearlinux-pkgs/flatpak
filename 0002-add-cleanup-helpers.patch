@@ -1,0 +1,59 @@
+From aa5b99b9dc7d01f8110c6cf5292e4ccd640fae8f Mon Sep 17 00:00:00 2001
+From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
+Date: Tue, 25 Sep 2018 13:45:06 -0500
+Subject: [PATCH] add cleanup helpers
+
+---
+ clr-flatpak-cleanup     | 23 +++++++++++++++++++++++
+ flatpak-cleanup.service |  9 +++++++++
+ 2 files changed, 32 insertions(+)
+ create mode 100755 clr-flatpak-cleanup
+ create mode 100644 flatpak-cleanup.service
+
+diff --git a/clr-flatpak-cleanup b/clr-flatpak-cleanup
+new file mode 100755
+index 0000000..6b8c384
+--- /dev/null
++++ b/clr-flatpak-cleanup
+@@ -0,0 +1,23 @@
++#!/bin/bash
++
++# For a while, Clear Linux* OS shipped an empty /var/lib/flatpak/repo dir
++# which turned into an unusable flatpak, we initialize flatpak now by using
++# `flatpak remote-list --system` which populates the /var/lib/flatpak
++# structure correctly (see /usr/lib/systemd/system/flatpak-init.service)
++#
++# This script will stay for a while to ensure that we cleanup our own mess
++# around flatpak initialization, so if (and only if)
++# `flatpak remote-list --system` fails and the error output is about our
++# messy directory in /var/lib/flatpak, we proceed with the cleanup.
++#
++ERR_EXP="error: While opening repository /var/lib/flatpak/repo: opendir(objects): No such file or directory"
++INIT_OUT=$(flatpak remote-list --system 2>&1)
++INIT_RC=$?
++if [[ ${INIT_RC} -ne 0 && "${INIT_OUT}" == "${ERR_EXP}" ]] ; then
++	logger "$0: returned ${INIT_RC}: ${INIT_OUT}: getting into a clean state"
++	rm -rf /var/lib/flatpak/* && flatpak remote-list --system
++	exit 0
++else
++	logger "$0: returned ${INIT_RC}: nothing to do"
++	exit 0
++fi
+diff --git a/flatpak-cleanup.service b/flatpak-cleanup.service
+new file mode 100644
+index 0000000..26fab6a
+--- /dev/null
++++ b/flatpak-cleanup.service
+@@ -0,0 +1,9 @@
++[Unit]
++Description=cleanup flatpak system repository
++
++[Service]
++Type=simple
++ExecStart=/usr/libexec/clr-flatpak-cleanup
++
++[Install]
++WantedBy=multi-user.target
+-- 
+2.19.0
+

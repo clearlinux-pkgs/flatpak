@@ -1,6 +1,7 @@
 [Unit]
 Description=Init system-wide flatpak repository
-ConditionPathExists=/var/lib/flatpak/repo/config
+ConditionPathExists=!/var/lib/flatpak/repo/config
+OnFailure=flatpak-cleanup.service
 
 [Service]
 Type=simple
