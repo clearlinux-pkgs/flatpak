@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.2
-Release  : 34
+Release  : 35
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.2/flatpak-1.0.2.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.2/flatpak-1.0.2.tar.xz
 Source1  : flatpak-init.service
@@ -57,6 +57,7 @@ BuildRequires : valgrind
 BuildRequires : xdg-desktop-portal
 BuildRequires : xmlto
 Patch1: 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
+Patch2: 0002-add-cleanup-helpers.patch
 
 %description
 These are completely random keys, which include the secret key.
@@ -74,9 +75,9 @@ autostart components for the flatpak package.
 %package bin
 Summary: bin components for the flatpak package.
 Group: Binaries
-Requires: flatpak-data
-Requires: flatpak-config
-Requires: flatpak-license
+Requires: flatpak-data = %{version}-%{release}
+Requires: flatpak-config = %{version}-%{release}
+Requires: flatpak-license = %{version}-%{release}
 
 %description bin
 bin components for the flatpak package.
@@ -101,10 +102,10 @@ data components for the flatpak package.
 %package dev
 Summary: dev components for the flatpak package.
 Group: Development
-Requires: flatpak-lib
-Requires: flatpak-bin
-Requires: flatpak-data
-Provides: flatpak-devel
+Requires: flatpak-lib = %{version}-%{release}
+Requires: flatpak-bin = %{version}-%{release}
+Requires: flatpak-data = %{version}-%{release}
+Provides: flatpak-devel = %{version}-%{release}
 
 %description dev
 dev components for the flatpak package.
@@ -113,8 +114,8 @@ dev components for the flatpak package.
 %package lib
 Summary: lib components for the flatpak package.
 Group: Libraries
-Requires: flatpak-data
-Requires: flatpak-license
+Requires: flatpak-data = %{version}-%{release}
+Requires: flatpak-license = %{version}-%{release}
 
 %description lib
 lib components for the flatpak package.
@@ -139,13 +140,14 @@ locales components for the flatpak package.
 %prep
 %setup -q -n flatpak-1.0.2
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536879509
+export SOURCE_DATE_EPOCH=1537980621
 %configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
@@ -157,7 +159,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1536879509
+export SOURCE_DATE_EPOCH=1537980621
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/flatpak
 cp COPYING %{buildroot}/usr/share/doc/flatpak/COPYING
@@ -173,6 +175,9 @@ mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
 mkdir -p %{buildroot}/usr/lib/systemd/system/multi-user.target.wants
 ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+cp flatpak-cleanup.service %{buildroot}/usr/lib/systemd/system/flatpak-cleanup.service
+mkdir -p %{buildroot}/usr/libexec
+cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
 ## install_append end
 
 %files
@@ -187,6 +192,7 @@ ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.ta
 /usr/bin/flatpak
 /usr/bin/flatpak-bisect
 /usr/bin/flatpak-coredumpctl
+/usr/libexec/clr-flatpak-cleanup
 /usr/libexec/flatpak-bwrap
 /usr/libexec/flatpak-dbus-proxy
 /usr/libexec/flatpak-portal
@@ -196,6 +202,7 @@ ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.ta
 %files config
 %defattr(-,root,root,-)
 %exclude /usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+/usr/lib/systemd/system/flatpak-cleanup.service
 /usr/lib/systemd/system/flatpak-init.service
 /usr/lib/systemd/system/flatpak-system-helper.service
 /usr/lib/systemd/user/dbus.service.d/flatpak.conf
