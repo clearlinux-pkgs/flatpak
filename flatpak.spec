@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.6
-Release  : 39
+Release  : 40
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.6/flatpak-1.0.6.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.6/flatpak-1.0.6.tar.xz
 Source1  : flatpak-init.service
