@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.6
-Release  : 40
+Release  : 41
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.6/flatpak-1.0.6.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.6/flatpak-1.0.6.tar.xz
 Source1  : flatpak-init.service
@@ -21,6 +21,7 @@ Requires: flatpak-libexec = %{version}-%{release}
 Requires: flatpak-license = %{version}-%{release}
 Requires: flatpak-locales = %{version}-%{release}
 Requires: flatpak-services = %{version}-%{release}
+Requires: glib-networking
 Requires: gnupg
 Requires: xdg-desktop-portal
 BuildRequires : bison
@@ -170,7 +171,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542390181
+export SOURCE_DATE_EPOCH=1549320275
 %configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
@@ -182,7 +183,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1542390181
+export SOURCE_DATE_EPOCH=1549320275
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
