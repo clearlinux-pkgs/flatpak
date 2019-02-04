@@ -2,3 +2,4 @@
 # picked up automatically. One name per line, no whitespace.
 gnupg
 xdg-desktop-portal
+glib-networking
