@@ -1,8 +1,8 @@
 mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
 
-mkdir -p %{buildroot}/usr/lib/systemd/system/multi-user.target.wants
-ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+mkdir -p %{buildroot}/usr/lib/systemd/system/graphical.target.wants
+ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/graphical.target.wants/flatpak-init.service
 
 cp flatpak-cleanup.service %{buildroot}/usr/lib/systemd/system/flatpak-cleanup.service
 mkdir -p %{buildroot}/usr/libexec
