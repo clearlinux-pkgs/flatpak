@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.7
-Release  : 42
+Release  : 43
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source1  : flatpak-init.service
@@ -171,7 +171,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550015330
+export SOURCE_DATE_EPOCH=1551990145
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %configure --disable-static --disable-documentation
 make  %{?_smp_mflags}
 
@@ -183,7 +184,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1550015330
+export SOURCE_DATE_EPOCH=1551990145
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
@@ -197,8 +198,8 @@ install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/tmpfiles.d/flatpak.conf
 ## install_append content
 mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
-mkdir -p %{buildroot}/usr/lib/systemd/system/multi-user.target.wants
-ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+mkdir -p %{buildroot}/usr/lib/systemd/system/graphical.target.wants
+ln -sf ../flatpak-init.service %{buildroot}/usr/lib/systemd/system/graphical.target.wants/flatpak-init.service
 cp flatpak-cleanup.service %{buildroot}/usr/lib/systemd/system/flatpak-cleanup.service
 mkdir -p %{buildroot}/usr/libexec
 cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
@@ -209,7 +210,7 @@ cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
 
 %files autostart
 %defattr(-,root,root,-)
-/usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+/usr/lib/systemd/system/graphical.target.wants/flatpak-init.service
 
 %files bin
 %defattr(-,root,root,-)
@@ -279,7 +280,7 @@ cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
 
 %files services
 %defattr(-,root,root,-)
-%exclude /usr/lib/systemd/system/multi-user.target.wants/flatpak-init.service
+%exclude /usr/lib/systemd/system/graphical.target.wants/flatpak-init.service
 /usr/lib/systemd/system/flatpak-cleanup.service
 /usr/lib/systemd/system/flatpak-init.service
 /usr/lib/systemd/system/flatpak-system-helper.service
