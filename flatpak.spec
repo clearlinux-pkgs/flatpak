@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.7
-Release  : 43
+Release  : 44
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source1  : flatpak-init.service
@@ -171,9 +171,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551990145
+export SOURCE_DATE_EPOCH=1553037196
 export LDFLAGS="${LDFLAGS} -fno-lto"
-%configure --disable-static --disable-documentation
+%configure --disable-static --disable-documentation --with-profile-dir=/usr/share/defaults/etc/profile.d
 make  %{?_smp_mflags}
 
 %check
@@ -184,7 +184,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1551990145
+export SOURCE_DATE_EPOCH=1553037196
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
@@ -232,6 +232,7 @@ cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
 /usr/share/dbus-1/services/org.freedesktop.portal.Flatpak.service
 /usr/share/dbus-1/system-services/org.freedesktop.Flatpak.SystemHelper.service
 /usr/share/dbus-1/system.d/org.freedesktop.Flatpak.SystemHelper.conf
+/usr/share/defaults/etc/profile.d/flatpak.sh
 /usr/share/flatpak/triggers/desktop-database.trigger
 /usr/share/flatpak/triggers/gtk-icon-cache.trigger
 /usr/share/flatpak/triggers/mime-database.trigger
