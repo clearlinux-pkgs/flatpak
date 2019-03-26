@@ -1,2 +1,3 @@
 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
 0002-add-cleanup-helpers.patch
+CVE-2019-10063.patch

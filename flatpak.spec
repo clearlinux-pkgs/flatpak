@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.7
-Release  : 44
+Release  : 45
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source1  : flatpak-init.service
@@ -61,6 +61,7 @@ BuildRequires : xdg-desktop-portal
 BuildRequires : xmlto
 Patch1: 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
 Patch2: 0002-add-cleanup-helpers.patch
+Patch3: CVE-2019-10063.patch
 
 %description
 These are completely random keys, which include the secret key.
@@ -165,14 +166,19 @@ services components for the flatpak package.
 %setup -q -n flatpak-1.0.7
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553037196
+export SOURCE_DATE_EPOCH=1553629483
 export LDFLAGS="${LDFLAGS} -fno-lto"
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --disable-documentation --with-profile-dir=/usr/share/defaults/etc/profile.d
 make  %{?_smp_mflags}
 
@@ -184,7 +190,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1553037196
+export SOURCE_DATE_EPOCH=1553629483
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
