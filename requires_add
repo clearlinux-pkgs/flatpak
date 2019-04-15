@@ -1,4 +1,4 @@
-gsettings-desktop-schemas# This file contains additional runtime requirements that did not get
+# This file contains additional runtime requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 gnupg
 xdg-desktop-portal

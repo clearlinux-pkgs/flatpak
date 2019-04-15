@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.0.7
-Release  : 46
+Release  : 47
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source1  : flatpak-init.service
@@ -24,7 +24,6 @@ Requires: flatpak-services = %{version}-%{release}
 Requires: glib-networking
 Requires: gnupg
 Requires: gsettings-desktop-schemas
-Requires: gsettings-desktop-schemas# This file contains additional runtime requirements that did not get
 Requires: xdg-desktop-portal
 BuildRequires : bison
 BuildRequires : dbus
@@ -176,7 +175,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555296507
+export SOURCE_DATE_EPOCH=1555297250
 export CFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -192,7 +191,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1555296507
+export SOURCE_DATE_EPOCH=1555297250
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
