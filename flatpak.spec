@@ -4,12 +4,12 @@
 #
 Name     : flatpak
 Version  : 1.0.7
-Release  : 45
+Release  : 46
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source1  : flatpak-init.service
 Source2  : flatpak.tmpfiles
-Summary  : Application sandboxing framework
+Summary  : Linux application sandboxing and distribution framework (formerly xdg-app)
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: flatpak-autostart = %{version}-%{release}
@@ -23,6 +23,8 @@ Requires: flatpak-locales = %{version}-%{release}
 Requires: flatpak-services = %{version}-%{release}
 Requires: glib-networking
 Requires: gnupg
+Requires: gsettings-desktop-schemas
+Requires: gsettings-desktop-schemas# This file contains additional runtime requirements that did not get
 Requires: xdg-desktop-portal
 BuildRequires : bison
 BuildRequires : dbus
@@ -64,9 +66,9 @@ Patch2: 0002-add-cleanup-helpers.patch
 Patch3: CVE-2019-10063.patch
 
 %description
-These are completely random keys, which include the secret key.
-Use these for testing gpg signing, do *NOT* ever use these for any
-real application.
+<p align="center">
+<img src="https://github.com/flatpak/flatpak/blob/master/flatpak.png?raw=true" alt="Flatpak icon"/>
+</p>
 
 %package autostart
 Summary: autostart components for the flatpak package.
@@ -112,6 +114,7 @@ Requires: flatpak-lib = %{version}-%{release}
 Requires: flatpak-bin = %{version}-%{release}
 Requires: flatpak-data = %{version}-%{release}
 Provides: flatpak-devel = %{version}-%{release}
+Requires: flatpak = %{version}-%{release}
 
 %description dev
 dev components for the flatpak package.
@@ -173,12 +176,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553629483
-export LDFLAGS="${LDFLAGS} -fno-lto"
-export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export SOURCE_DATE_EPOCH=1555296507
+export CFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --disable-documentation --with-profile-dir=/usr/share/defaults/etc/profile.d
 make  %{?_smp_mflags}
 
@@ -190,7 +192,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1553629483
+export SOURCE_DATE_EPOCH=1555296507
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
