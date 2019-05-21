@@ -4,12 +4,12 @@
 #
 Name     : flatpak
 Version  : 1.0.7
-Release  : 47
+Release  : 48
 URL      : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.0.7/flatpak-1.0.7.tar.xz
 Source1  : flatpak-init.service
 Source2  : flatpak.tmpfiles
-Summary  : Linux application sandboxing and distribution framework (formerly xdg-app)
+Summary  : Application sandboxing framework
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: flatpak-autostart = %{version}-%{release}
@@ -39,7 +39,6 @@ BuildRequires : gtk-doc-dev
 BuildRequires : libarchive-dev
 BuildRequires : libassuan-dev
 BuildRequires : libcap-dev
-BuildRequires : libgpg-error-dev
 BuildRequires : libxslt-bin
 BuildRequires : perl(XML::Parser)
 BuildRequires : pkgconfig(appstream-glib)
@@ -175,11 +174,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555297250
-export CFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fcf-protection=full -fstack-protector-strong -mzero-caller-saved-regs=used "
+export SOURCE_DATE_EPOCH=1558464905
+export GCC_IGNORE_WERROR=1
+export LDFLAGS="${LDFLAGS} -fno-lto"
+export CFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fstack-protector-strong -mzero-caller-saved-regs=used "
 %configure --disable-static --disable-documentation --with-profile-dir=/usr/share/defaults/etc/profile.d
 make  %{?_smp_mflags}
 
@@ -191,7 +192,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1555297250
+export SOURCE_DATE_EPOCH=1558464905
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
