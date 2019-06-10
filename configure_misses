@@ -1,2 +1,3 @@
 Configure miss: if gcc supports flag -Werror=parenthesis in envvar CFLAGS
 Configure miss: DEP_GPGME
+Configure miss: /usr/share/selinux/devel/Makefile
