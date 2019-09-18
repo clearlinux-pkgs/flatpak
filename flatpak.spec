@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.4.1
-Release  : 51
+Release  : 52
 URL      : https://github.com/flatpak/flatpak/releases/download/1.4.1/flatpak-1.4.1.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.4.1/flatpak-1.4.1.tar.xz
 Source1  : flatpak-init.service
@@ -69,6 +69,7 @@ BuildRequires : xdg-desktop-portal
 BuildRequires : xmlto
 Patch1: 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
 Patch2: 0002-add-cleanup-helpers.patch
+Patch3: 0003-revokefs_Fix_off-by-one_array_size_in_fuse_implementation.patch
 
 %description
 <p align="center">
@@ -174,13 +175,14 @@ services components for the flatpak package.
 %setup -q -n flatpak-1.4.1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568787294
+export SOURCE_DATE_EPOCH=1568823710
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -200,7 +202,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1568787294
+export SOURCE_DATE_EPOCH=1568823710
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
