@@ -2,6 +2,7 @@ libX11.so.6
 libappstream-glib.so.8
 libarchive.so.13
 libc.so.6
+libcap.so.2
 libdconf.so.1
 libfuse.so.2
 libgcc_s.so.1
