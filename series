@@ -1,4 +1,2 @@
 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
 0002-add-cleanup-helpers.patch
-0003-revokefs_Fix_off-by-one_array_size_in_fuse_implementation.patch
-#CVE-2019-10063.patch
