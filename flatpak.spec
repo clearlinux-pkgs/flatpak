@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.4.3
-Release  : 53
+Release  : 54
 URL      : https://github.com/flatpak/flatpak/releases/download/1.4.3/flatpak-1.4.3.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.4.3/flatpak-1.4.3.tar.xz
 Source1  : flatpak-init.service
@@ -31,6 +31,7 @@ BuildRequires : dbus-dev
 BuildRequires : docbook-xml
 BuildRequires : gettext
 BuildRequires : glib-networking
+BuildRequires : glibc-bin
 BuildRequires : gnupg
 BuildRequires : gobject-introspection-dev
 BuildRequires : gpgme
@@ -179,7 +180,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569641506
+export SOURCE_DATE_EPOCH=1569646176
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -199,7 +200,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check ||:
 
 %install
-export SOURCE_DATE_EPOCH=1569641506
+export SOURCE_DATE_EPOCH=1569646176
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp COPYING %{buildroot}/usr/share/package-licenses/flatpak/COPYING
