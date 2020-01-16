@@ -23,6 +23,8 @@ libflatpak.so.0:flatpak_installation_fetch_remote_ref_sync_full
 libflatpak.so.0:flatpak_installation_fetch_remote_size_sync
 libflatpak.so.0:flatpak_installation_get_config
 libflatpak.so.0:flatpak_installation_get_current_installed_app
+libflatpak.so.0:flatpak_installation_get_default_languages
+libflatpak.so.0:flatpak_installation_get_default_locales
 libflatpak.so.0:flatpak_installation_get_display_name
 libflatpak.so.0:flatpak_installation_get_id
 libflatpak.so.0:flatpak_installation_get_installed_ref
@@ -69,6 +71,8 @@ libflatpak.so.0:flatpak_installation_update_appstream_full_sync
 libflatpak.so.0:flatpak_installation_update_appstream_sync
 libflatpak.so.0:flatpak_installation_update_full
 libflatpak.so.0:flatpak_installation_update_remote_sync
+libflatpak.so.0:flatpak_installed_ref_get_appdata_content_rating
+libflatpak.so.0:flatpak_installed_ref_get_appdata_content_rating_type
 libflatpak.so.0:flatpak_installed_ref_get_appdata_license
 libflatpak.so.0:flatpak_installed_ref_get_appdata_name
 libflatpak.so.0:flatpak_installed_ref_get_appdata_summary
@@ -164,6 +168,7 @@ libflatpak.so.0:flatpak_remote_set_title
 libflatpak.so.0:flatpak_remote_set_url
 libflatpak.so.0:flatpak_remote_type_get_type
 libflatpak.so.0:flatpak_storage_type_get_type
+libflatpak.so.0:flatpak_transaction_abort_webflow
 libflatpak.so.0:flatpak_transaction_add_default_dependency_sources
 libflatpak.so.0:flatpak_transaction_add_dependency_source
 libflatpak.so.0:flatpak_transaction_add_install
@@ -172,10 +177,14 @@ libflatpak.so.0:flatpak_transaction_add_install_flatpakref
 libflatpak.so.0:flatpak_transaction_add_rebase
 libflatpak.so.0:flatpak_transaction_add_uninstall
 libflatpak.so.0:flatpak_transaction_add_update
+libflatpak.so.0:flatpak_transaction_complete_basic_auth
 libflatpak.so.0:flatpak_transaction_error_details_get_type
 libflatpak.so.0:flatpak_transaction_get_current_operation
 libflatpak.so.0:flatpak_transaction_get_installation
+libflatpak.so.0:flatpak_transaction_get_no_deploy
+libflatpak.so.0:flatpak_transaction_get_no_pull
 libflatpak.so.0:flatpak_transaction_get_operations
+libflatpak.so.0:flatpak_transaction_get_parent_window
 libflatpak.so.0:flatpak_transaction_get_type
 libflatpak.so.0:flatpak_transaction_is_empty
 libflatpak.so.0:flatpak_transaction_new_for_installation
@@ -209,6 +218,7 @@ libflatpak.so.0:flatpak_transaction_set_disable_static_deltas
 libflatpak.so.0:flatpak_transaction_set_force_uninstall
 libflatpak.so.0:flatpak_transaction_set_no_deploy
 libflatpak.so.0:flatpak_transaction_set_no_pull
+libflatpak.so.0:flatpak_transaction_set_parent_window
 libflatpak.so.0:flatpak_transaction_set_reinstall
 libflatpak.so.0:flatpak_uninstall_flags_get_type
 libflatpak.so.0:flatpak_update_flags_get_type
