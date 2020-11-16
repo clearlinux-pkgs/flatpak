@@ -8,3 +8,4 @@ gpgme-dev
 libassuan-dev
 dbus
 dbus-dev
+pyparsing
