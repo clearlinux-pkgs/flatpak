@@ -1,11 +1,14 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-valgrind
-libcap-dev
-libarchive-dev
-gpgme
-gpgme-dev
-libassuan-dev
+bison
 dbus
 dbus-dev
+gobject-introspection-dev
+gpgme
+gpgme-dev
+libarchive-dev
+libassuan-dev
+libcap-dev
 pyparsing
+valgrind
+xmlto

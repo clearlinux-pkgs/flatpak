@@ -1,6 +1,6 @@
 # This file contains additional runtime requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-gnupg
-xdg-desktop-portal-gtk
 glib-networking
+gnupg
 gsettings-desktop-schemas
+xdg-desktop-portal-gtk

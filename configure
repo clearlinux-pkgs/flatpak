@@ -1,1 +1,2 @@
---disable-documentation --with-profile-dir=/usr/share/defaults/etc/profile.d
+--disable-documentation
+--with-profile-dir=/usr/share/defaults/etc/profile.d
