@@ -1,4 +1,4 @@
-From aa5b99b9dc7d01f8110c6cf5292e4ccd640fae8f Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 25 Sep 2018 13:45:06 -0500
 Subject: [PATCH] add cleanup helpers
@@ -54,6 +54,3 @@ index 0000000..26fab6a
 +
 +[Install]
 +WantedBy=multi-user.target
--- 
-2.19.0
-

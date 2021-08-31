@@ -1,4 +1,4 @@
-From e12b785dfa78e6f76c78f1dc3c78c9bea1a5d3da Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Josue David Hernandez <josue.d.hernandez.gutierrez@intel.com>
 Date: Tue, 3 Jul 2018 18:28:54 -0500
 Subject: [PATCH] Add /var/cache to XDG_DATA_DIRS var
@@ -15,6 +15,3 @@ index 478770b..60d8c93 100644
 @@ -1 +1 @@
 -XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share/:@localstatedir@/lib/flatpak/exports/share/:/usr/local/share/:/usr/share/
 +XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share/:@localstatedir@/lib/flatpak/exports/share/:/usr/local/share/:/var/cache/:/usr/share/
--- 
-2.18.0
-
