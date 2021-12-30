@@ -12,3 +12,4 @@ libcap-dev
 pyparsing
 valgrind
 xmlto
+buildreq-gnome

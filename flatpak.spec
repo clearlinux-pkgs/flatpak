@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.12.2
-Release  : 68
+Release  : 69
 URL      : https://github.com/flatpak/flatpak/releases/download/1.12.2/flatpak-1.12.2.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.12.2/flatpak-1.12.2.tar.xz
 Source1  : flatpak-init.service
@@ -26,6 +26,7 @@ Requires: gnupg
 Requires: gsettings-desktop-schemas
 Requires: xdg-desktop-portal-gtk
 BuildRequires : bison
+BuildRequires : buildreq-gnome
 BuildRequires : dbus
 BuildRequires : dbus-dev
 BuildRequires : docbook-xml
@@ -179,7 +180,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1640882810
+export SOURCE_DATE_EPOCH=1640883253
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -202,7 +203,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1640882810
+export SOURCE_DATE_EPOCH=1640883253
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp %{_builddir}/flatpak-1.12.2/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
