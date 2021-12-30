@@ -1,0 +1,11 @@
+--- flatpak-1.12.2/subprojects/variant-schema-compiler/variant-schema-compiler~	2021-10-12 09:52:39.000000000 +0000
++++ flatpak-1.12.2/subprojects/variant-schema-compiler/variant-schema-compiler	2021-12-30 16:38:54.110808435 +0000
+@@ -1740,7 +1740,7 @@
+         add_named_type(typename_prefix + name, type)
+     return type
+ 
+-nameableType = (Optional((Suppress("'") + ident).leaveWhitespace()) + (arrayType ^ maybeType ^ dictType ^ structType)).setParseAction(handleNameableType)
++nameableType = (Optional((Suppress("'") + ident)) + (arrayType ^ maybeType ^ dictType ^ structType)).setParseAction(handleNameableType)
+ 
+ typeSpec <<= basicType  ^ variantType ^ namedType ^ nameableType
+ 

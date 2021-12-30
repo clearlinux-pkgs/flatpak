@@ -1,2 +1,4 @@
 --disable-documentation
 --with-profile-dir=/usr/share/defaults/etc/profile.d
+--disable-seccomp
+--enable-gdm-env-file
