@@ -9,7 +9,7 @@ gpgme-dev
 libarchive-dev
 libassuan-dev
 libcap-dev
-pyparsing
+pypi(pyparsing)
 valgrind
 xmlto
 buildreq-gnome
