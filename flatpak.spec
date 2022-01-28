@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.12.4
-Release  : 71
+Release  : 72
 URL      : https://github.com/flatpak/flatpak/releases/download/1.12.4/flatpak-1.12.4.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.12.4/flatpak-1.12.4.tar.xz
 Source1  : flatpak-init.service
@@ -178,7 +178,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1642785168
+export SOURCE_DATE_EPOCH=1643392484
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -201,7 +201,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1642785168
+export SOURCE_DATE_EPOCH=1643392484
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp %{_builddir}/flatpak-1.12.4/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
