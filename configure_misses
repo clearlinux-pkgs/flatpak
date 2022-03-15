@@ -1,4 +1,5 @@
 Configure miss: /usr/share/selinux/devel/Makefile
-Configure miss: DEP_GPGME
-Configure miss: MALCONTENT
+Configure miss: gcc options needed to detect all undeclared functions
+Configure miss: gpgme-pthread >= 1.1.8
 Configure miss: if gcc supports flag -Werror=parenthesis in envvar CFLAGS
+Configure miss: malcontent-0 >= 0.4.0
