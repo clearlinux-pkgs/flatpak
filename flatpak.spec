@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.12.7
-Release  : 75
+Release  : 76
 URL      : https://github.com/flatpak/flatpak/releases/download/1.12.7/flatpak-1.12.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.12.7/flatpak-1.12.7.tar.xz
 Source1  : flatpak-init.service
@@ -39,6 +39,7 @@ BuildRequires : gtk-doc-dev
 BuildRequires : libarchive-dev
 BuildRequires : libassuan-dev
 BuildRequires : libcap-dev
+BuildRequires : libsoup-dev
 BuildRequires : libxslt-bin
 BuildRequires : perl(XML::Parser)
 BuildRequires : pkgconfig(appstream-glib)
@@ -178,7 +179,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1647383085
+export SOURCE_DATE_EPOCH=1652105311
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -201,7 +202,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1647383085
+export SOURCE_DATE_EPOCH=1652105311
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp %{_builddir}/flatpak-1.12.7/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
