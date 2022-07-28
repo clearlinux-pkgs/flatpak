@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.12.7
-Release  : 76
+Release  : 77
 URL      : https://github.com/flatpak/flatpak/releases/download/1.12.7/flatpak-1.12.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.12.7/flatpak-1.12.7.tar.xz
 Source1  : flatpak-init.service
@@ -65,8 +65,8 @@ BuildRequires : pypi(pyparsing)
 BuildRequires : sed
 BuildRequires : valgrind
 BuildRequires : xmlto
-Patch1: 0001-Add-var-cache-to-XDG_DATA_DIRS-var.patch
-Patch2: 0002-add-cleanup-helpers.patch
+Patch1: 0002-add-cleanup-helpers.patch
+Patch2: 0001-fix-xdg-override.patch
 
 %description
 <p align="center">
@@ -179,7 +179,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1652105311
+export SOURCE_DATE_EPOCH=1659029898
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -202,11 +202,11 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1652105311
+export SOURCE_DATE_EPOCH=1659029898
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
-cp %{_builddir}/flatpak-1.12.7/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
-cp %{_builddir}/flatpak-1.12.7/subprojects/libglnx/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/flatpak-%{version}/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/flatpak-%{version}/subprojects/libglnx/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
 %make_install
 %find_lang flatpak
 mkdir -p %{buildroot}/usr/lib/systemd/system

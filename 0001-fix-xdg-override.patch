@@ -1,5 +1,5 @@
---- a/flatpak.env.in	2022-07-28 19:12:20.934673154 +0300
-+++ b/flatpak.env.in	2022-07-28 19:12:31.221746858 +0300
+--- a/env.d/flatpak.env.in	2022-07-28 19:12:20.934673154 +0300
++++ b/env.d/flatpak.env.in	2022-07-28 19:12:31.221746858 +0300
 @@ -1 +1 @@
 -XDG_DATA_DIRS=$HOME/.local/share/flatpak/exports/share/:@localstatedir@/lib/flatpak/exports/share/:/usr/local/share/:/usr/share/
-+XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.local/share/flatpak/exports/share/:@localstatedir@/lib/flatpak/exports/share/:/usr/local/share/:/usr/share/
++XDG_DATA_DIRS=$XDG_DATA_DIRS:$HOME/.local/share/flatpak/exports/share/:@localstatedir@/lib/flatpak/exports/share/:/usr/local/share/:/usr/share/:/var/cache/
