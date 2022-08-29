@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.12.7
-Release  : 77
+Release  : 78
 URL      : https://github.com/flatpak/flatpak/releases/download/1.12.7/flatpak-1.12.7.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.12.7/flatpak-1.12.7.tar.xz
 Source1  : flatpak-init.service
@@ -65,8 +65,7 @@ BuildRequires : pypi(pyparsing)
 BuildRequires : sed
 BuildRequires : valgrind
 BuildRequires : xmlto
-Patch1: 0002-add-cleanup-helpers.patch
-Patch2: 0001-fix-xdg-override.patch
+Patch1: 0001-add-cleanup-helpers.patch
 
 %description
 <p align="center">
@@ -172,14 +171,13 @@ services components for the flatpak package.
 %setup -q -n flatpak-1.12.7
 cd %{_builddir}/flatpak-1.12.7
 %patch1 -p1
-%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1659029898
+export SOURCE_DATE_EPOCH=1661792874
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -202,7 +200,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check || :
 
 %install
-export SOURCE_DATE_EPOCH=1659029898
+export SOURCE_DATE_EPOCH=1661792874
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/flatpak
 cp %{_builddir}/flatpak-%{version}/COPYING %{buildroot}/usr/share/package-licenses/flatpak/01a6b4bf79aca9b556822601186afab86e8c4fbf
@@ -213,6 +211,8 @@ mkdir -p %{buildroot}/usr/lib/systemd/system
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/flatpak-init.service
 mkdir -p %{buildroot}/usr/lib/tmpfiles.d
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/tmpfiles.d/flatpak.conf
+## Remove excluded files
+rm -f %{buildroot}*/usr/share/gdm/env.d/flatpak.env
 ## install_append content
 mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
@@ -263,7 +263,6 @@ cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
 /usr/share/flatpak/triggers/desktop-database.trigger
 /usr/share/flatpak/triggers/gtk-icon-cache.trigger
 /usr/share/flatpak/triggers/mime-database.trigger
-/usr/share/gdm/env.d/flatpak.env
 /usr/share/gir-1.0/*.gir
 /usr/share/polkit-1/actions/org.freedesktop.Flatpak.policy
 /usr/share/polkit-1/rules.d/org.freedesktop.Flatpak.rules
