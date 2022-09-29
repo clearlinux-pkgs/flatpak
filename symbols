@@ -183,11 +183,15 @@ libflatpak.so.0:flatpak_transaction_add_uninstall
 libflatpak.so.0:flatpak_transaction_add_update
 libflatpak.so.0:flatpak_transaction_complete_basic_auth
 libflatpak.so.0:flatpak_transaction_error_details_get_type
+libflatpak.so.0:flatpak_transaction_get_auto_install_debug
+libflatpak.so.0:flatpak_transaction_get_auto_install_sdk
 libflatpak.so.0:flatpak_transaction_get_current_operation
 libflatpak.so.0:flatpak_transaction_get_include_unused_uninstall_ops
 libflatpak.so.0:flatpak_transaction_get_installation
 libflatpak.so.0:flatpak_transaction_get_no_deploy
+libflatpak.so.0:flatpak_transaction_get_no_interaction
 libflatpak.so.0:flatpak_transaction_get_no_pull
+libflatpak.so.0:flatpak_transaction_get_operation_for_ref
 libflatpak.so.0:flatpak_transaction_get_operations
 libflatpak.so.0:flatpak_transaction_get_parent_window
 libflatpak.so.0:flatpak_transaction_get_type
@@ -219,6 +223,8 @@ libflatpak.so.0:flatpak_transaction_progress_set_update_frequency
 libflatpak.so.0:flatpak_transaction_remote_reason_get_type
 libflatpak.so.0:flatpak_transaction_result_get_type
 libflatpak.so.0:flatpak_transaction_run
+libflatpak.so.0:flatpak_transaction_set_auto_install_debug
+libflatpak.so.0:flatpak_transaction_set_auto_install_sdk
 libflatpak.so.0:flatpak_transaction_set_default_arch
 libflatpak.so.0:flatpak_transaction_set_disable_auto_pin
 libflatpak.so.0:flatpak_transaction_set_disable_dependencies

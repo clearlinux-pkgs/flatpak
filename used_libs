@@ -1,10 +1,11 @@
 libX11.so.6
-libappstream-glib.so.8
+libappstream.so.4
 libarchive.so.13
 libc.so.6
 libcap.so.2
+libcurl.so.4
 libdconf.so.1
-libfuse.so.2
+libfuse3.so.3
 libgcc_s.so.1
 libgdk_pixbuf-2.0.so.0
 libgio-2.0.so.0
@@ -14,7 +15,6 @@ libjson-glib-1.0.so.0
 libostree-1.so.1
 libpolkit-agent-1.so.0
 libpolkit-gobject-1.so.0
-libsoup-2.4.so.1
 libsystemd.so.0
 libxml2.so.2
 libzstd.so.1

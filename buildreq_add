@@ -13,4 +13,3 @@ pypi(pyparsing)
 valgrind
 xmlto
 buildreq-gnome
-libsoup-dev
