@@ -1,5 +1,5 @@
 libX11.so.6
-libappstream.so.4
+libappstream.so.5
 libarchive.so.13
 libc.so.6
 libcap.so.2
