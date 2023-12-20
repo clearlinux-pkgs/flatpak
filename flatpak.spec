@@ -4,7 +4,7 @@
 #
 Name     : flatpak
 Version  : 1.14.2
-Release  : 81
+Release  : 82
 URL      : https://github.com/flatpak/flatpak/releases/download/1.14.2/flatpak-1.14.2.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.14.2/flatpak-1.14.2.tar.xz
 Source1  : flatpak-init.service
