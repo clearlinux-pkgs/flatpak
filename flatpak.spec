@@ -9,7 +9,7 @@
 #
 Name     : flatpak
 Version  : 1.14.5
-Release  : 85
+Release  : 86
 URL      : https://github.com/flatpak/flatpak/releases/download/1.14.5/flatpak-1.14.5.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.14.5/flatpak-1.14.5.tar.xz
 Source1  : flatpak-init.service
