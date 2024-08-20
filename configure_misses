@@ -1,7 +1,5 @@
 Configure miss: /usr/share/selinux/devel/Makefile
 Configure miss: /usr/share/selinux/devel/Makefile
-Configure miss: gcc option to enable large file support
-Configure miss: gcc option to enable large file support
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: gcc options needed to detect all undeclared functions
 Configure miss: if gcc supports flag -Werror=parenthesis in envvar CFLAGS
