@@ -9,7 +9,7 @@
 #
 Name     : flatpak
 Version  : 1.14.10
-Release  : 105
+Release  : 106
 URL      : https://github.com/flatpak/flatpak/releases/download/1.14.10/flatpak-1.14.10.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.14.10/flatpak-1.14.10.tar.xz
 Source1  : flatpak-init.service
