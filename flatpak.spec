@@ -7,7 +7,7 @@
 #
 Name     : flatpak
 Version  : 1.16.1
-Release  : 108
+Release  : 109
 URL      : https://github.com/flatpak/flatpak/releases/download/1.16.1/flatpak-1.16.1.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.16.1/flatpak-1.16.1.tar.xz
 Source1  : flatpak-init.service
@@ -188,7 +188,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1748644177
+export SOURCE_DATE_EPOCH=1748648230
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -265,6 +265,7 @@ mkdir -p %{buildroot}/usr/lib/tmpfiles.d
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/tmpfiles.d/flatpak.conf
 ## Remove excluded files
 rm -f %{buildroot}*/usr/share/gdm/env.d/flatpak.env
+rm -f %{buildroot}*/usr/share/defaults/etc/profile.d/flatpak.csh
 ## install_append content
 mkdir -p %{buildroot}/usr/share/dbus-1/system.d/
 mv system-helper/org.freedesktop.Flatpak.SystemHelper.conf %{buildroot}/usr/share/dbus-1/system.d/
@@ -312,7 +313,6 @@ cp clr-flatpak-cleanup %{buildroot}/usr/libexec/clr-flatpak-cleanup
 /usr/share/dbus-1/services/org.freedesktop.portal.Flatpak.service
 /usr/share/dbus-1/system-services/org.freedesktop.Flatpak.SystemHelper.service
 /usr/share/dbus-1/system.d/org.freedesktop.Flatpak.SystemHelper.conf
-/usr/share/defaults/etc/profile.d/flatpak.csh
 /usr/share/defaults/etc/profile.d/flatpak.sh
 /usr/share/fish/vendor_completions.d/flatpak.fish
 /usr/share/fish/vendor_conf.d/flatpak.fish
