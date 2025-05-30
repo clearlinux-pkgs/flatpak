@@ -1,6 +1,7 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 bison
+bubblewrap
 dbus
 dbus-dev
 gobject-introspection-dev
@@ -10,6 +11,9 @@ libarchive-dev
 libassuan-dev
 libcap-dev
 pypi(pyparsing)
+procps-ng
+socat
 valgrind
+xdg-dbus-proxy
 xmlto
 buildreq-gnome

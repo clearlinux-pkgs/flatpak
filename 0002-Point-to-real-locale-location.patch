@@ -1,0 +1,25 @@
+From c4688aef4c8c7d01f71dc52e1b04cacc894e4e2a Mon Sep 17 00:00:00 2001
+From: "Brett T. Warden" <brett.t.warden@intel.com>
+Date: Thu, 29 May 2025 16:27:51 -0700
+Subject: [PATCH] Point to real locale location
+
+---
+ tests/make-test-runtime.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/make-test-runtime.sh b/tests/make-test-runtime.sh
+index 6345ff5..3f514f1 100755
+--- a/tests/make-test-runtime.sh
++++ b/tests/make-test-runtime.sh
+@@ -94,7 +94,7 @@ chmod a+x ${DIR}/usr/bin/runtime_hello.sh
+ # the real en_US locale is often not available, because its in the
+ # local archive.
+ mkdir -p ${DIR}/usr/lib/locale/
+-cp -r /usr/lib/locale/C.* ${DIR}/usr/lib/locale/en_US
++cp -r /usr/share/locale/C.* ${DIR}/usr/lib/locale/en_US
+ 
+ if [ x$COLLECTION_ID != x ]; then
+     collection_args=--collection-id=${COLLECTION_ID}
+-- 
+2.49.0
+

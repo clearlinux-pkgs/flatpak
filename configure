@@ -1,4 +1,8 @@
---disable-documentation
---with-profile-dir=/usr/share/defaults/etc/profile.d
---disable-seccomp
---enable-gdm-env-file
+-Ddocbook_docs=disabled
+-Dgdm_env_file=true
+-Dgtkdoc=disabled
+-Dman=disabled
+-Dprofile_dir=/usr/share/defaults/etc/profile.d
+-Dseccomp=disabled
+-Dsystem_bubblewrap=/usr/bin/bwrap
+-Dsystem_dbus_proxy=/usr/bin/xdg-dbus-proxy

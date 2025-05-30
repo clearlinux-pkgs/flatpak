@@ -1,4 +1,4 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From 3ba2fc17b09ab336aea3c268281fdeb354620769 Mon Sep 17 00:00:00 2001
 From: "Simental Magana, Marcos" <marcos.simental.magana@intel.com>
 Date: Tue, 25 Sep 2018 13:45:06 -0500
 Subject: [PATCH] add cleanup helpers
@@ -12,7 +12,7 @@ Subject: [PATCH] add cleanup helpers
 
 diff --git a/clr-flatpak-cleanup b/clr-flatpak-cleanup
 new file mode 100755
-index 0000000..6b8c384
+index 0000000..b27d375
 --- /dev/null
 +++ b/clr-flatpak-cleanup
 @@ -0,0 +1,23 @@
@@ -54,3 +54,6 @@ index 0000000..26fab6a
 +
 +[Install]
 +WantedBy=multi-user.target
+-- 
+2.49.0
+

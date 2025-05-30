@@ -1,3 +1,6 @@
 /etc/:
+/etc/dbus-1/system.d:
 /etc/dbus-1:
 dbus-1
+org.freedesktop.Flatpak.SystemHelper.conf
+system.d
