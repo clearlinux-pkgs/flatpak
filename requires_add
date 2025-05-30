@@ -1,8 +1,9 @@
 # This file contains additional runtime requirements that did not get
 # picked up automatically. One name per line, no whitespace.
 bubblewrap-bin
+fuse-bin
 glib-networking
-gnupg
+gnupg-bin
 gsettings-desktop-schemas
 xdg-dbus-proxy-bin
 xdg-desktop-portal-gtk

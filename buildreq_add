@@ -5,6 +5,7 @@ bubblewrap
 dbus
 dbus-dev
 gobject-introspection-dev
+gnupg-bin
 gpgme
 gpgme-dev
 libarchive-dev

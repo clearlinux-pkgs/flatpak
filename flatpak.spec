@@ -7,7 +7,7 @@
 #
 Name     : flatpak
 Version  : 1.16.1
-Release  : 109
+Release  : 110
 URL      : https://github.com/flatpak/flatpak/releases/download/1.16.1/flatpak-1.16.1.tar.xz
 Source0  : https://github.com/flatpak/flatpak/releases/download/1.16.1/flatpak-1.16.1.tar.xz
 Source1  : flatpak-init.service
@@ -25,8 +25,9 @@ Requires: flatpak-license = %{version}-%{release}
 Requires: flatpak-locales = %{version}-%{release}
 Requires: flatpak-services = %{version}-%{release}
 Requires: bubblewrap-bin
+Requires: fuse-bin
 Requires: glib-networking
-Requires: gnupg
+Requires: gnupg-bin
 Requires: gsettings-desktop-schemas
 Requires: xdg-dbus-proxy-bin
 Requires: xdg-desktop-portal-gtk
@@ -40,6 +41,7 @@ BuildRequires : dbus-dev
 BuildRequires : dconf-dev
 BuildRequires : docbook-xml
 BuildRequires : fuse-dev
+BuildRequires : gnupg-bin
 BuildRequires : gobject-introspection-dev
 BuildRequires : gpgme
 BuildRequires : gpgme-dev
@@ -188,7 +190,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1748648230
+export SOURCE_DATE_EPOCH=1748649338
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
